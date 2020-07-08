@@ -2,7 +2,7 @@ import React from 'react';
 
 const urlImagBase = 'https://res.cloudinary.com/dkkgmzpqd/image/upload/v1545217305/T-shirt%20Images/';
 
-const Settings = ({ color, upperText, lowerText, uploadImage }) => {
+const Settings = ({ color, upperText, lowerText, uploadImage, textSize, textColor }) => {
     return (
 
         <div className="card bg-light container">
@@ -57,29 +57,22 @@ const Settings = ({ color, upperText, lowerText, uploadImage }) => {
             <hr />
 
             <h4> Text Size </h4>
-            <input type="range"
-                min="0"
-                max="100" />
+            <input onChange={textSize} type="range"
+                min="24"
+                max="44" />
 
             <hr />
 
 
             <h4> Text Color </h4>
 
-            {/*      <select className="form-control form-control-sm mb-2" >
 
-                <option > White </option>
-                <option > Black </option>
-                <option > Red </option>
-                <option > Blue </option>
-
-            </select> */}
 
             <div class="input-group mb-3">
                 <div class="input-group-prepend">
                     <label class="input-group-text" for="inputGroupSelect01">Color</label>
                 </div>
-                <select class="custom-select" id="inputGroupSelect01">
+                <select onChange={textColor} class="custom-select" id="inputGroupSelect01">
                     <option selected>Choose...</option>
                     <option > White </option>
                     <option > Black </option>

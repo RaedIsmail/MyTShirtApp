@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import './Display.css';
 
-const Display = ({ display }) => {
+const Display = ({ display, textFormat }) => {
+    console.log(display.textColor);
 
     return (
 
@@ -15,14 +16,14 @@ const Display = ({ display }) => {
             </div>
             <div className="memeText text-center">
                 <div className="upperText">
-                    <p>{display.upperText}</p>
+                    <p style={{ fontSize: textFormat, color: display.textColor }}>{display.upperText}</p>
                 </div>
                 <img
                     src={`${display.url}` || 'http://via.placeholder.com/400x300'}
                     alt="meme-text"
                 />
                 <div className="lowerText">
-                    <p>{display.lowerText}</p>
+                    <p style={{ fontSize: textFormat, color: display.textColor }}>{display.lowerText}</p>
                 </div>
             </div>
         </div>

@@ -11,7 +11,9 @@ class Dashboard extends Component {
         upperText: 'This is Upper Text',
         lowerText: 'This is Lower Text',
         memeImg: '',
-        url: ''
+        url: '',
+        textSize: 44,
+        textColor: "white"
 
     }
 
@@ -44,14 +46,30 @@ class Dashboard extends Component {
                 },
                 () => {
 
-                    storage.ref('images').child(image.name).getDownloadURL().then(url => {
-                        this.setState({ url });
+                    storage.ref('image').child(image.name).getDownloadURL()
+                        .then(url => {
+                            this.setState({ url });
 
-                    })
+                        })
                 }
             )
         }
 
+    }
+    handleTextSize = (e) => {
+        this.setState({ textSize: e.target.value })
+
+    }
+
+    formatText() {
+
+        const size = this.state.textSize;
+        return parseInt(size);
+    }
+
+    handleTextColor = (e) => {
+
+        this.setState({ textColor: e.target.value })
     }
 
     render() {
@@ -59,7 +77,9 @@ class Dashboard extends Component {
             <div className="container py-5">
                 <div className="row">
                     <div className="col-lg-8">
-                        <Display display={this.state} />
+                        <Display
+                            display={this.state} />
+                        textFormat={this.formatText()}
                     </div>
                     <div className="col-lg-4">
                         <Settings
@@ -67,6 +87,8 @@ class Dashboard extends Component {
                             upperText={this.handleUpperText}
                             lowerText={this.handleLowerText}
                             uploadImage={this.handleImageUpload}
+                            textSize={this.handleTextSize}
+                            textColor={this.handleTextColor}
                         />
 
                     </div>
