@@ -2,7 +2,7 @@ import React from 'react';
 
 const urlImagBase = 'https://res.cloudinary.com/dkkgmzpqd/image/upload/v1545217305/T-shirt%20Images/';
 
-const Settings = ({ color, upperText, lowerText, uploadImage, textSize, textColor }) => {
+const Settings = ({ color, upperText, lowerText, uploadImage, textSize, textColor, saveDesign }) => {
     return (
 
         <div className="card bg-light container">
@@ -82,7 +82,7 @@ const Settings = ({ color, upperText, lowerText, uploadImage, textSize, textColo
             </div>
 
             <hr />
-            <button className="btn btn-outline-primary btn-sm mb-2">Save</button>
+            <button className="btn btn-outline-primary btn-sm mb-2" onClick="{saveDesign}" id="saveDesign">Save</button>
 
         </div>
 

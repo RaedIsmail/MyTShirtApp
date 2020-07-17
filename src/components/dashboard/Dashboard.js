@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import Display from '../design/Display';
 import Settings from '../design/Setting';
+import { connect } from 'react-redux';
 import { storage } from '../../config/firebaseConfig';
+import { saveDesign } from '../../store/actions/saveDesignAction';
 
 class Dashboard extends Component {
 
@@ -72,14 +74,24 @@ class Dashboard extends Component {
         this.setState({ textColor: e.target.value })
     }
 
+    handleSaveDesign = (e) => {
+
+        if (e.target.id === 'saveDesign') {
+
+            this.props.saveDeign(this.state)
+        }
+    }
+
     render() {
         return (
             <div className="container py-5">
                 <div className="row">
                     <div className="col-lg-8">
                         <Display
-                            display={this.state} />
-                        textFormat={this.formatText()}
+                            display={this.state}
+                            textFormat={this.formatText()}
+                        />
+
                     </div>
                     <div className="col-lg-4">
                         <Settings
@@ -89,6 +101,7 @@ class Dashboard extends Component {
                             uploadImage={this.handleImageUpload}
                             textSize={this.handleTextSize}
                             textColor={this.handleTextColor}
+                            saveDesign={this.handleSaveDesign}
                         />
 
                     </div>
@@ -100,4 +113,11 @@ class Dashboard extends Component {
 
 }
 
-export default Dashboard;
+const mapDispatchToProps = (dispatch) => {
+
+    return {
+        saveDesign: (design) => dispatch(saveDesign(design))
+    }
+}
+
+export default connect(null, mapDispatchToProps)(Dashboard);
